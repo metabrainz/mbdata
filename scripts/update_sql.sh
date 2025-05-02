@@ -2,13 +2,15 @@
 
 cd $(dirname $0)/../mbdata
 
+GIT_TARGET="${1:-v-2024-05-13-schema-change}"
+
 rm -rf sql
 
 rm -rf /tmp/mbserver-clone
 mkdir /tmp/mbserver-clone
 
-curl -L -o /tmp/mbserver-clone/master.tar.gz https://github.com/metabrainz/musicbrainz-server/archive/master.tar.gz
-tar -x -f /tmp/mbserver-clone/master.tar.gz --strip-components=2 --wildcards 'musicbrainz-server-master/admin/sql/*'
+curl -L -o "/tmp/mbserver-clone/$GIT_TARGET.tar.gz" "https://github.com/metabrainz/musicbrainz-server/archive/$GIT_TARGET.tar.gz"
+tar -x -f "/tmp/mbserver-clone/$GIT_TARGET.tar.gz" --strip-components=2 --wildcards "musicbrainz-server-$GIT_TARGET/admin/sql/*"
 rm -rf /tmp/mbserver-clone
 
 echo '\set ON_ERROR_STOP 1' >sql/CreateCollateIndexes.sql
