@@ -110,8 +110,8 @@ INSERT INTO release_label (id, release, label, catalog_number)
 INSERT INTO url (id, gid, url)
     VALUES (1, '9201840b-d810-4e0f-bb75-c791205f5b24', 'http://musicbrainz.org/');
 
-INSERT INTO medium (id, release, position, format, name) VALUES (1, 1, 1, 1, 'The First Disc');
-INSERT INTO medium (id, release, position, format, name) VALUES (2, 1, 2, 1, 'The Second Disc');
+INSERT INTO medium (id, gid, release, position, format, name) VALUES (1, 'e67d7889-d617-478f-acc2-40012aec59f5', 1, 1, 1, 'The First Disc');
+INSERT INTO medium (id, gid, release, position, format, name) VALUES (2, 'e692e77f-8670-4c1c-b880-8c3d23d14f04', 1, 2, 1, 'The Second Disc');
 
 INSERT INTO track (id, gid, recording, medium, position, number, name, artist_credit, length)
     VALUES (1, '3fd2523e-1ced-4f83-8b93-c7ecf6960b32', 1, 1, 1, 1, 1, 2, 123456);
@@ -157,11 +157,11 @@ INSERT INTO release_label (id, release, label, catalog_number)
 INSERT INTO release_label (id, release, label, catalog_number)
     VALUES (4, 3, 2, '82796 97772 2');
 
-INSERT INTO medium (id, release, position, format, name) VALUES (3, 2, 1, 1, 'A Sea of Honey');
-INSERT INTO medium (id, release, position, format, name) VALUES (4, 2, 2, 1, 'A Sky of Honey');
+INSERT INTO medium (id, gid, release, position, format, name) VALUES (3, '6ff40540-7c91-4d0d-bbdd-a199edb45e08', 2, 1, 1, 'A Sea of Honey');
+INSERT INTO medium (id, gid, release, position, format, name) VALUES (4, '76e93539-2c4a-4e24-b3ad-79657cb8185e', 2, 2, 1, 'A Sky of Honey');
 
-INSERT INTO medium (id, release, position, format, name) VALUES (5, 3, 1, 1, 'A Sea of Honey');
-INSERT INTO medium (id, release, position, format, name) VALUES (6, 3, 2, 1, 'A Sky of Honey');
+INSERT INTO medium (id, gid, release, position, format, name) VALUES (5, '84130ff4-50bb-45cf-a3db-454236a59bc4', 3, 1, 1, 'A Sea of Honey');
+INSERT INTO medium (id, gid, release, position, format, name) VALUES (6, '0e8c3742-21be-48ec-8672-138cd0e6d178', 3, 2, 1, 'A Sky of Honey');
 
 INSERT INTO recording (id, gid, name, artist_credit, length, last_updated) VALUES
     (2, '54b9d183-7dab-42ba-94a3-7388a66604b8', 'King of the Mountain', 3, 293720, '2020-02-20 19:00:00');
@@ -242,6 +242,7 @@ INSERT INTO isrc (isrc, recording) VALUES ('DEE250800230', 2);
 INSERT INTO link (id, link_type, attribute_count) VALUES (1, 148, 1);
 INSERT INTO link (id, link_type, attribute_count) VALUES (2, 148, 2);
 INSERT INTO link (id, link_type, attribute_count, begin_date_year) VALUES (3, 183, 0, 2006);
+INSERT INTO link (id, link_type, attribute_count) VALUES (4, 108, 0);
 
 INSERT INTO link_attribute (link, attribute_type) VALUES (1, 229);
 INSERT INTO link_attribute (link, attribute_type) VALUES (2, 1);
@@ -256,6 +257,7 @@ INSERT INTO artist (id, gid, name, sort_name, comment) VALUES
 INSERT INTO event (id, gid, name, begin_date_year, begin_date_month, begin_date_day, end_date_year, end_date_month, end_date_day, time, type, cancelled, setlist, comment, ended)
     VALUES (59357, 'ca1d24c1-1999-46fd-8a95-3d4108df5cb2', 'BBC Open Music Prom', 2022, 9, 1, 2022, 9, 1, '19:30:00', 1, 'f', NULL, '2022, Prom 60', 't');
 
+INSERT INTO l_artist_artist (id, link, entity0, entity1) VALUES (1, 4, 8, 9);
 INSERT INTO l_artist_recording (id, link, entity0, entity1) VALUES (1, 1, 8, 2);
 INSERT INTO l_artist_recording (id, link, entity0, entity1, edits_pending) VALUES (2, 1, 9, 2, 1);
 INSERT INTO l_artist_recording (id, link, entity0, entity1) VALUES (3, 2, 8, 3);
