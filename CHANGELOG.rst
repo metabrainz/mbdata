@@ -1,3 +1,11 @@
+Version 30.0.0
+==============
+
+- Schema change 30.
+- Allow selecting MBS tag or branch from which to update SQL
+- Delete useless /updates SQL folder after update
+- Drop support for Python 3.8, add support for 3.13
+
 Version 29.0.0
 ==============
 
