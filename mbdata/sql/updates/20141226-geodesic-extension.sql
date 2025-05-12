@@ -1,3 +1,0 @@
-\set ON_ERROR_STOP 1
-
-CREATE EXTENSION IF NOT EXISTS earthdistance WITH SCHEMA public;

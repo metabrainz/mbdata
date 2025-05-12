@@ -28,3 +28,5 @@ rm sql/CreateIndexes.sql.remove
 mv sql/DropIndexes.sql sql/DropIndexes.sql.remove
 grep -v _collate sql/DropIndexes.sql.remove >> sql/DropIndexes.sql
 rm sql/DropIndexes.sql.remove
+
+rm -rf sql/updates
