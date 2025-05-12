@@ -101,5 +101,5 @@ following:
 
     MBDATA_DATABASE_ECHO=1 pytest -v
 
-Jenkins task that automatically runs the tests after each commit is
-`here <http://build.oxygene.sk/job/mbdata/>`__.
+GitHub Actions workflow that automatically runs the tests after each commit is
+`here <https://github.com/metabrainz/mbdata/actions/workflows/test.yml>`__.
