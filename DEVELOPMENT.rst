@@ -7,7 +7,7 @@ Development Setup
 
 Clone the repository and setup virtualenv::
 
-    git clone git@github.com:lalinsky/mbdata.git
+    git clone git@github.com:metabrainz/mbdata.git
     cd mbdata/
     virtualenv -p python3 venv
     source venv/bin/activate
