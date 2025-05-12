@@ -19,7 +19,7 @@ Updating SQL files and models
 
 Run these scripts to update SQL files and rebuild SQLAlchemy models from them::
 
-    ./scripts/update_sql.sh
+    ./scripts/update_sql.sh $desired_git_branch_or_tag
     ./scripts/update_models.sh
 
 Release a new version

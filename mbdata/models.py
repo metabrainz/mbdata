@@ -758,7 +758,7 @@ class ArtistRelease(Base):
     catalog_numbers = Column(String)
     country_code = Column(CHAR(2))
     barcode = Column(BIGINT)
-    sort_character = Column(CHAR(1), nullable=False)
+    name = Column(String, nullable=False)
     release_id = Column('release', Integer, ForeignKey(apply_schema('release.id', 'musicbrainz'), name='artist_release_fk_release'), nullable=False, primary_key=True)
 
     artist = relationship('Artist', foreign_keys=[artist_id], innerjoin=True)
@@ -774,10 +774,12 @@ class ArtistReleaseGroup(Base):
     is_track_artist = Column(Boolean, nullable=False)
     artist_id = Column('artist', Integer, ForeignKey(apply_schema('artist.id', 'musicbrainz'), name='artist_release_group_fk_artist'), nullable=False, primary_key=True)
     unofficial = Column(Boolean, nullable=False)
+    primary_type_child_order = Column(SMALLINT)
     primary_type = Column(SMALLINT)
+    secondary_type_child_orders = Column(SMALLINT)
     secondary_types = Column(SMALLINT)
     first_release_date = Column(Integer)
-    sort_character = Column(CHAR(1), nullable=False)
+    name = Column(String, nullable=False)
     release_group_id = Column('release_group', Integer, ForeignKey(apply_schema('release_group.id', 'musicbrainz'), name='artist_release_group_fk_release_group'), nullable=False, primary_key=True)
 
     artist = relationship('Artist', foreign_keys=[artist_id], innerjoin=True)
@@ -6878,6 +6880,7 @@ class EditorOauthToken(Base):
 class Medium(Base):
     __tablename__ = 'medium'
     __table_args__ = (
+        Index('medium_idx_gid', 'gid', unique=True),
         Index('medium_idx_track_count', 'track_count'),
         {'schema': mbdata.config.schemas.get('musicbrainz', 'musicbrainz')}
     )
@@ -6890,6 +6893,7 @@ class Medium(Base):
     edits_pending = Column(Integer, nullable=False, default=0, server_default=sql.text('0'))
     last_updated = Column(DateTime(timezone=True), server_default=sql.func.now())
     track_count = Column(Integer, nullable=False, default=0, server_default=sql.text('0'))
+    gid = Column(UUID, nullable=False)
 
     release = relationship('Release', foreign_keys=[release_id], innerjoin=True, backref=backref('mediums', order_by="Medium.position"))
     format = relationship('MediumFormat', foreign_keys=[format_id])
@@ -7014,6 +7018,28 @@ class MediumFormat(Base):
     gid = Column(UUID, nullable=False)
 
     parent = relationship('MediumFormat', foreign_keys=[parent_id])
+
+
+class MediumGIDRedirect(Base):
+    __tablename__ = 'medium_gid_redirect'
+    __table_args__ = (
+        Index('medium_gid_redirect_idx_new_id', 'new_id'),
+        {'schema': mbdata.config.schemas.get('musicbrainz', 'musicbrainz')}
+    )
+
+    gid = Column(UUID, nullable=False, primary_key=True)
+    redirect_id = Column('new_id', Integer, ForeignKey(apply_schema('medium.id', 'musicbrainz'), name='medium_gid_redirect_fk_new_id'), nullable=False)
+    created = Column(DateTime(timezone=True), server_default=sql.func.now())
+
+    redirect = relationship('Medium', foreign_keys=[redirect_id], innerjoin=True)
+
+    @hybrid_property
+    def new_id(self):
+        return self.redirect_id
+
+    @hybrid_property
+    def medium(self):
+        return self.redirect
 
 
 class Mood(Base):
