@@ -1,10 +1,16 @@
-[tool.poetry]
+[project]
 name = "mbdata"
-version = "27.1.0"
 description = "MusicBrainz Database Tools"
 readme = "README.rst"
-authors = ["Lukáš Lalinský <lalinsky@gmail.com>"]
+authors = [
+    { name = "MetaBrainz Foundation", email = "support@metabrainz.org"},
+    { name = "Lukáš Lalinský", email = "<lalinsky@gmail.com>"},
+]
 license = "MIT"
+dynamic = ["version"]
+
+[tool.poetry]
+version = "0.0.0"
 
 [tool.poetry.dependencies]
 python = "^3.7"
@@ -12,7 +18,7 @@ SQLAlchemy = {version = "^1.4.29", optional = true}
 lxml = {version = "^4.9.1", optional = true}
 six = "^1.16.0"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 flake8 = "^5.0.0"
 psycopg2 = "^2.9.2"
 sqlparse = "^0.4.4"
@@ -25,6 +31,9 @@ types-psycopg2 = "^2.9.21"
 search = ["lxml"]
 models = ["SQLAlchemy"]
 
+[tool.poetry-dynamic-versioning]
+enable = true
+
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=2.0.0,<3.0.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0"]
+build-backend = "poetry_dynamic_versioning.backend"
