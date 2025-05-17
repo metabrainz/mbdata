@@ -28,16 +28,6 @@ Release a new version
 
 1. Add notes to ``CHANGELOG.rst``
 
-2. Tag the repository::
+2. Create a new Github release.
 
-    git tag -s vX.Y.Z
-
-3. Build the package::
-
-   poetry build
-
-4. Upload the package to PyPI::
-
-    rm -rf dist/
-    python setup.py sdist
-    twine upload dist/mbdata-*.tar.gz
+3. The publish workflow will build a new package distribution and upload it to pypi.
