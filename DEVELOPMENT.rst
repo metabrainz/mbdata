@@ -13,6 +13,7 @@ Clone the repository and setup virtualenv::
     source venv/bin/activate
     pip install poetry
     poetry install
+    poetry self add 'poetry-dynamic-versioning[plugin]'
 
 Updating SQL files and models
 =============================
@@ -25,13 +26,15 @@ Run these scripts to update SQL files and rebuild SQLAlchemy models from them::
 Release a new version
 =====================
 
-1. Change the version number in ``mbdata/__init__.py``.
+1. Add notes to ``CHANGELOG.rst``
 
-2. Add notes to ``CHANGELOG.rst``
-
-3. Tag the repository::
+2. Tag the repository::
 
     git tag -s vX.Y.Z
+
+3. Build the package::
+
+   poetry build
 
 4. Upload the package to PyPI::
 
