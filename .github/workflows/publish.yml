@@ -1,0 +1,25 @@
+name: Continuous Delivery
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/mbdata
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: snok/install-poetry@v1
+        with:
+          plugins: |
+            poetry-dynamic-versioning[plugin]
+      - run: poetry build
+      - uses: pypa/gh-action-pypi-publish@release/v1
