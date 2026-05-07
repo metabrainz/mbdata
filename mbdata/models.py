@@ -2000,6 +2000,7 @@ class ISRC(Base):
     id = Column(Integer, primary_key=True)
     recording_id = Column('recording', Integer, ForeignKey(apply_schema('recording.id', 'musicbrainz'), name='isrc_fk_recording'), nullable=False)
     isrc = Column(CHAR(12), nullable=False)
+    source = Column(SMALLINT)
     edits_pending = Column(Integer, nullable=False, default=0, server_default=sql.text('0'))
     created = Column(DateTime(timezone=True), server_default=sql.func.now())
 
@@ -2017,6 +2018,7 @@ class ISWC(Base):
     id = Column(Integer, nullable=False, primary_key=True)
     work_id = Column('work', Integer, ForeignKey(apply_schema('work.id', 'musicbrainz'), name='iswc_fk_work'), nullable=False)
     iswc = Column(CHAR(15))
+    source = Column(SMALLINT)
     edits_pending = Column(Integer, nullable=False, default=0, server_default=sql.text('0'))
     created = Column(DateTime(timezone=True), nullable=False, server_default=sql.func.now())
 
