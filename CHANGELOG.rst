@@ -1,3 +1,9 @@
+Version 31.0.0
+==============
+
+- Schema change 31.
+- Drop support for Python 3.9
+
 Version 30.0.0
 ==============
 
