@@ -15,7 +15,7 @@ version = "0.0.0"
 [tool.poetry.dependencies]
 python = "^3.10"
 SQLAlchemy = {version = "^1.4.29", optional = true}
-lxml = {version = "^4.9.1", optional = true}
+lxml = {version = "^6.1.0", optional = true}
 six = "^1.16.0"
 
 [tool.poetry.group.dev.dependencies]
