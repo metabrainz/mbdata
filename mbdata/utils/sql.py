@@ -248,7 +248,7 @@ class CreateType(Statement):
         return token.value
 
     def get_enum_labels(self):
-        idx, enum_token = self.token_next_by(m=(T.Name, 'ENUM'))
+        idx, enum_token = self.token_next_by(m=(T.Keyword, 'ENUM'))
         if enum_token is None:
             raise ValueError('unknown format - missing ENUM')
 
